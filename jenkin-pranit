@@ -40,5 +40,12 @@ pipeline {
             echo 'Failure !'
             mail bcc: '', body: 'job \'${env.JOB_URL}\'', cc: 'rahultiple1@gmail.com', from: '', replyTo: '', subject: 'Pipeline Failed: "${env.JOB_NAME}"', to: 'ptaksande17@gmail.com'
         }
+
+        success { 
+            echo ' success!'
+            archiveArtifacts artifacts: '\'**/target/*.jar\'', followSymlinks: false, onlyIfSuccessful: true
+        }
     }
+
+    
 }
