@@ -34,12 +34,11 @@ pipeline {
                 echo 'Deploy on Ec-2'
             }
         }
-
-        post { 
-            failure { 
-                echo 'Failure !'
-                mail bcc: '', body: 'job \'${env.JOB_URL}\'', cc: 'rahultiple1@gmail.com', from: '', replyTo: '', subject: 'Pipeline Failed: "${env.JOB_NAME}"', to: 'ptaksande17@gmail.com'
-            }
+    }
+    post { 
+        failure { 
+            echo 'Failure !'
+            mail bcc: '', body: 'job \'${env.JOB_URL}\'', cc: 'rahultiple1@gmail.com', from: '', replyTo: '', subject: 'Pipeline Failed: "${env.JOB_NAME}"', to: 'ptaksande17@gmail.com'
         }
     }
 }
