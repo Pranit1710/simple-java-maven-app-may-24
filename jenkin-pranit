@@ -31,14 +31,14 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                ech 'Deploy on Ec-2'
+                echo 'Deploy on Ec-2'
             }
         }
 
         post { 
             failure { 
                 echo 'Failure !'
-                mail bcc: '', body: '"${env.JOB_URL}', cc: 'rahultiple1@gmail.com', from: '', replyTo: '', subject: 'Pipeline Failed', to: 'ptaksande17@gmail.com'
+                mail bcc: '', body: 'job \'${env.JOB_URL}\'', cc: 'rahultiple1@gmail.com', from: '', replyTo: '', subject: 'Pipeline Failed: "${env.JOB_NAME}"', to: 'ptaksande17@gmail.com'
             }
         }
     }
