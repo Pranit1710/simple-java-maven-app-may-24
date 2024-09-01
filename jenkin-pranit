@@ -24,7 +24,7 @@ pipeline {
 
             post { 
                 always { 
-                    junit stdioRetention: '', testResults: 'devops-1/target/surefire-reports/*.xml'
+                    junit stdioRetention: '', testResults: '**/target/surefire-reports/*.xml'
                 }
             }
 
