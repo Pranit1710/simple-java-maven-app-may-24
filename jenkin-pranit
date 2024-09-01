@@ -21,6 +21,13 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+
+            post { 
+                always { 
+                    junit stdioRetention: '', testResults: 'devops-1/target/surefire-reports/*.xml'
+                }
+            }
+
         }
         stage('Deliver') {
             steps {
