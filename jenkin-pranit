@@ -32,6 +32,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                sh 'docker rmi pranitdockerhub/cicd:latest'
+                sh 'docker rmi java:latest'
                 sh 'docker build -t java .'
             }
         }
@@ -56,7 +58,11 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Deploy on Ec-2'
+            // for realtime envirnoment
+            //  withCredentials([string(credentialsId: 'docker-hub', variable: 'docker_hub')]){}
+            //  sh 'docker login -u pranitdockerhub -p $docker_hub' }
+                sh 'docker run -itd --name java pranitdockerhub/cicd:latest /bin/bash'
+            //  sh 'docker logout'
             }
         }
     }
