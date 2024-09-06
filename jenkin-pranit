@@ -38,7 +38,7 @@ pipeline {
 
         stage('DockerHub login & Image push to dockerhub') {
             steps {
-              withCredentials([string(credentialsId: 'Docker-hub', variable: 'Docker-hub')]) {
+             withCredentials([string(credentialsId: 'docker_hub', variable: 'Docker-hub')]){
               sh 'docker login -u pranitdockerhub -p $Docker-hub'
               }
 
