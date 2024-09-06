@@ -36,6 +36,15 @@ pipeline {
             }
         }
 
+        stage('DockerHub login & Image push to dockerhub') {
+            steps {
+              withCredentials([string(credentialsId: 'Docker-hub', variable: 'Docker-hub')]) {
+              sh 'docker login -u pranitdockerhub -p $Docker-hub'
+              }
+
+            }
+        }
+
         stage('Approval') {
             steps {
                 input 'Approve Deployment to Production'
